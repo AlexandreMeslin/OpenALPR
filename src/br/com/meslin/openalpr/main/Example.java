@@ -4,6 +4,9 @@
 
 package br.com.meslin.openalpr.main;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import com.openalpr.jni.Alpr;
 import com.openalpr.jni.AlprException;
 import com.openalpr.jni.AlprPlate;
@@ -21,13 +24,15 @@ public class Example {
 		 Alpr alpr = new Alpr("us", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data");
 
 		 // Set top N candidates returned to 20
-		 alpr.setTopN(20);
+		 alpr.setTopN(5);
 
 		 // Set pattern to Maryland
 		 alpr.setDefaultRegion("md");
 
-		 AlprResults results = alpr.recognize("/home/meslin/Desktop/temp/openalpr/src/build/lp.jpg");
-		 System.out.format("  %-15s%-8s\n", "Plate Number", "Confidence");
+		 Instant startTime = Instant.now();
+		 AlprResults results = alpr.recognize("/home/meslin/GoogleDrive/Doutorado/MUSANet/Imagens/placa-us-1.jpg");
+		 Instant endTime = Instant.now();
+		 System.out.format("  %-15s%-8s %d ms\n", "Plate Number", "Confidence", Duration.between(startTime, endTime).toMillis());
 		 for (AlprPlateResult result : results.getPlates())
 		 {
 		     for (AlprPlate plate : result.getTopNPlates()) {
