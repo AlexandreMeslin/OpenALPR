@@ -31,6 +31,7 @@ public class Example {
 
 		 Instant startTime = Instant.now();
 		 AlprResults results = alpr.recognize("/home/meslin/GoogleDrive/Doutorado/MUSANet/Imagens/placa-us-1.jpg");
+//		 AlprResults results = alpr.recognize("/home/meslin/Desktop/placa-us-hires.jpg");
 		 Instant endTime = Instant.now();
 		 System.out.format("  %-15s%-8s %d ms\n", "Plate Number", "Confidence", Duration.between(startTime, endTime).toMillis());
 		 for (AlprPlateResult result : results.getPlates())
@@ -48,4 +49,3 @@ public class Example {
 		 alpr.unload();	
 	}
 }
-
